@@ -1,28 +1,7 @@
-import { Box, Button, Container, TextField, Checkbox, FormControlLabel, Grid, Typography } from '@mui/material';
+import { Box, Button, Container, TextField, Checkbox, FormControlLabel, Grid, Typography, Alert } from '@mui/material';
 import React from 'react'
-import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {useState, useEffect} from 'react';
-import { Navigate, json, useNavigate } from 'react-router-dom';
-
-
-const theme = createTheme({
-    palette: {
-
-            mode: 'light',
-            primary: {
-              main: '#1ab1bd',
-            },
-            secondary: {
-              main: '#009c68',
-            },
-            error: {
-              main: '#8a0909',
-            },
-            info: {
-              main: '#401a58',
-            },
-    }
-});
+import { useNavigate, json } from 'react-router-dom';
 
 function Login() {
 
@@ -31,9 +10,9 @@ function Login() {
     const [lembrar, setLembrar] = useState(false);
     const [login, setLogin ] = useState(false);
     const [erro, setErro] = useState(false);
-
     const navigate = useNavigate();
     
+    /* função do useEffect em React é permitir que você realize efeitos colaterais em componentes de função. Efeitos colaterais são ações que acontecem além da renderização normal de um componente, como fazer chamadas de API, manipular o DOM, gerenciar assinaturas de eventos ou atualizar o estado do componente. */
     useEffect(() => {
 
        if(login){
@@ -47,7 +26,7 @@ function Login() {
 
     function Autenticar( evento )
     {
-        fetch("https://api.escuelajs.co/api/v1/auth/login",{
+        fetch("http://10.139.75.32:8080/login",{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -55,16 +34,16 @@ function Login() {
             body: JSON.stringify(
                 {
                     email:email,
-                    password:senha
+                    senha:senha
                 }
             )
         })
         .then((resposta)=>resposta.json())
         .then((json)=>{
-            if(json.statusCode === 401){
-                setErro(true);
-            }else {
+            if(json.user ){
                 setLogin(true);
+            }else {
+                setErro(true);
             }
         })
         .catch((erro)=>{setErro(true)})
@@ -74,12 +53,11 @@ function Login() {
     }
 
   return (
-    <ThemeProvider theme ={theme}>
     <Container component="section" maxWidth="xs">
         <Box sx={{
 
             mt:10,
-            backgroundColor:"",
+            backgroundColor:"#CAF5FD",
             padding:"50px",
             borderRadius:"10px",
             display: "flex",
@@ -89,6 +67,7 @@ function Login() {
             }}>
 
             <Typography component ="h1" variant ='h5'>Entrar</Typography>
+            {erro && (<Alert severity='warning'>Revise seus dados e tente novamente</Alert>)}
             <Box component="form" onSubmit={Autenticar}>
                 <TextField 
                 label = "Email" 
@@ -98,6 +77,7 @@ function Login() {
                 margin="normal"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                {...erro && ("error")}
                 />
                 
                 <TextField 
@@ -136,7 +116,6 @@ function Login() {
             </Box>
         </Box>
     </Container>
-    </ThemeProvider>
   )
 }
 
