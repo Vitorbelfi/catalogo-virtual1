@@ -1,4 +1,4 @@
-import { Box, Container,  TextField, Typography,  Button } from '@mui/material';
+import { Box, Container,  TextField, Typography,  Button, Alert } from '@mui/material';
 import React from 'react'
 import {useState, useEffect} from 'react';
 
@@ -12,12 +12,12 @@ function Filmes() {
     const [categoria, setCategoria] = useState("");
     const [imagem, setImagem] = useState("");
     const [ cadastro, setCadastro] = useState(false);
-  const [ erro, setErro] = useState(false);
+    const [ erro, setErro] = useState(false);
 
 function Cadastrar(evento){
     
     evento.preventDefault();
-    fetch("http://10.139.75.32:8080/users",{
+    fetch(process.env.REACT_APP_BACKEND + "filmes",{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -46,17 +46,6 @@ function Cadastrar(evento){
             })
             .catch((erro)=>{setErro(true)})
       }
-      useEffect(() =>{
-
-        setTitulo("");
-        setDescricao ("");
-        setAno("");
-        setDuracao("");
-        setCategoria("");
-        setImagem("");
-      /*  setCadastro(false);*/
-    
-      }, [cadastro]);
     
 
   return (
@@ -73,15 +62,21 @@ function Cadastrar(evento){
 
 
         }}>
+          
+
             <Typography component ="h1" variant ='h5'>Cadastro Filme</Typography>
+
+            {erro && (<Alert severity='warning'>Filme ja cadastrado , tente novamente please!</Alert>)}
+            {cadastro && (<Alert severity='success'>Obrigado por cadastrar seu filme!</Alert>)}
             
-            <Box component="form" onSubmit=""> 
+            <Box component="form" onSubmit={Cadastrar}> 
                 <TextField
                     label = "titulo" 
                     variant="filled" 
                     type="text"  
                     fullWidth 
                     margin="normal"
+                    onChange={(e) => setTitulo(e.target.value)}
                 />
                 <TextField
                   label = "descrição" 
@@ -89,6 +84,7 @@ function Cadastrar(evento){
                   type="text"  
                   fullWidth 
                   margin="normal"
+                  onChange={(e) => setDescricao(e.target.value)}
                 />
                 <TextField
                   label = "ano" 
@@ -96,6 +92,7 @@ function Cadastrar(evento){
                   type="text"  
                   fullWidth 
                   margin="normal"
+                  onChange={(e) => setAno(e.target.value)}
                 />
                 <TextField
                   label = "duração" 
@@ -103,6 +100,7 @@ function Cadastrar(evento){
                   type="text"  
                   fullWidth 
                   margin="normal"
+                  onChange={(e) => setDuracao(e.target.value)}
                 />
                 <TextField
                   label = "categoria " 
@@ -110,13 +108,16 @@ function Cadastrar(evento){
                   type="text"  
                   fullWidth 
                   margin="normal"
+                  onChange={(e) => setCategoria(e.target.value)}
                 />
                 <TextField
-                  label = "imagem" 
+                  label = "url da imagem" 
                   variant="filled" 
-                  type="text"  
+                  type="img" 
+                  value={imagem} 
                   fullWidth 
                   margin="normal"
+                  onChange={(e) => setImagem(e.target.value)}
                 />
                 <Button type="submit" 
                 variant="contained" 
