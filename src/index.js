@@ -6,6 +6,7 @@ import Filmes from './filmes';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Cadastro from './Cadastro'
+import EditaFilme from './components/EditaFilme';
 
 
 
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path: "/filmes",
     element:<Filmes/>
+  },
+  {
+    path: "/edicao/:id",
+    element: <EditaFilme/>
   }
 
 ]);
