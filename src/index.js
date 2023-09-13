@@ -7,26 +7,29 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Cadastro from './Cadastro'
 import EditaFilme from './components/EditaFilme';
+import Login2 from './login2'
 
 
 
 const theme = createTheme({
   palette: {
-
-          mode: 'light',
-          primary: {
-            main: '#1ab1bd',
-          },
-          secondary: {
-            main: '#009c68',
-          },
-          error: {
-            main: '#8a0909',
-          },
-          info: {
-            main: '#401a58',
-          },
-  }
+    mode: 'light',
+    primary: {
+      main: '#e2e210',
+    },
+    secondary: {
+      main: '#000000',
+    },
+    error: {
+      main: '#8a0909',
+    },
+    info: {
+      main: '#401a58',
+    },
+    text: {
+      primary: 'rgba(0,0,0,0.87)',
+    },
+  },
 });
 
 
@@ -50,6 +53,10 @@ const router = createBrowserRouter([
   {
     path: "/edicao/:id",
     element: <EditaFilme/>
+  },
+  {
+    path: "/login2",
+    element: <Login2/>
   }
 
 ]);

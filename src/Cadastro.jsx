@@ -60,7 +60,7 @@ function Cadastro() {
       <Container component="section" maxWidth="xs">
         <Box sx={{
            mt:10,
-           backgroundColor:"#CAF5FD",
+           backgroundColor:"white",
            padding:"50px",
            borderRadius:"10px",
            display: "flex",

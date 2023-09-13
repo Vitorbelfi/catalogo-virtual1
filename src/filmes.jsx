@@ -5,11 +5,11 @@ import {useState, useEffect} from 'react';
 
 
 function Filmes() {
-    const [titulo, setTitulo ] = useState("");
+    const [nome, setNome ] = useState("");
     const [descricao, setDescricao ] = useState("");
-    const [ano, setAno ] = useState("");
-    const [duracao, setDuracao ] = useState("");
-    const [categoria, setCategoria] = useState("");
+    const [durabilidade, setDurabilidade ] = useState("");
+    const [tamanho, setTamanho ] = useState("");
+    const [cor, setCor] = useState("");
     const [imagem, setImagem] = useState("");
     const [ cadastro, setCadastro] = useState(false);
     const [ erro, setErro] = useState(false);
@@ -24,11 +24,11 @@ function Cadastrar(evento){
             },
             body: JSON.stringify(
                 {
-                    titulo:titulo,
+                    nome:nome,
                     descricao: descricao,
-                    ano:ano,
-                    duracao:duracao,
-                    categoria:categoria,
+                    durabilidade:durabilidade,
+                    tamanho:tamanho,
+                    cor:cor,
                     imagem:imagem
                 }
                 )
@@ -53,7 +53,7 @@ function Cadastrar(evento){
         <Box sx={{
 
         mt:10,
-        backgroundColor:"#CAF5FD",
+        backgroundColor:"white",
         padding:"50px",
         borderRadius:"10px",
         display: "flex",
@@ -63,20 +63,21 @@ function Cadastrar(evento){
 
         }}>
           
+          
 
-            <Typography component ="h1" variant ='h5'>Cadastro Filme</Typography>
+            <Typography component ="h1" variant ='h5'>Cadastro Produto</Typography>
 
             {erro && (<Alert severity='warning'>Filme ja cadastrado , tente novamente please!</Alert>)}
-            {cadastro && (<Alert severity='success'>Obrigado por cadastrar seu filme!</Alert>)}
+            {cadastro && (<Alert severity='success'>Obrigado por cadastrar seu produto!</Alert>)}
             
             <Box component="form" onSubmit={Cadastrar}> 
                 <TextField
-                    label = "titulo" 
+                    label = "nome" 
                     variant="filled" 
                     type="text"  
                     fullWidth 
                     margin="normal"
-                    onChange={(e) => setTitulo(e.target.value)}
+                    onChange={(e) => setNome(e.target.value)}
                 />
                 <TextField
                   label = "descrição" 
@@ -87,28 +88,28 @@ function Cadastrar(evento){
                   onChange={(e) => setDescricao(e.target.value)}
                 />
                 <TextField
-                  label = "ano" 
+                  label = "durabilidade" 
                   variant="filled" 
                   type="text"  
                   fullWidth 
                   margin="normal"
-                  onChange={(e) => setAno(e.target.value)}
+                  onChange={(e) => setDurabilidade(e.target.value)}
                 />
                 <TextField
-                  label = "duração" 
+                  label = "tamanho" 
                   variant="filled" 
                   type="text"  
                   fullWidth 
                   margin="normal"
-                  onChange={(e) => setDuracao(e.target.value)}
+                  onChange={(e) => setTamanho(e.target.value)}
                 />
                 <TextField
-                  label = "categoria " 
+                  label = "cor " 
                   variant="filled" 
                   type="text"  
                   fullWidth 
                   margin="normal"
-                  onChange={(e) => setCategoria(e.target.value)}
+                  onChange={(e) => setCor(e.target.value)}
                 />
                 <TextField
                   label = "url da imagem" 

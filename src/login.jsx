@@ -53,16 +53,20 @@ function Login() {
     }
 
   return (
+    
+    
     <Container component="section" maxWidth="xs">
         <Box sx={{
 
             mt:10,
-            backgroundColor:"#CAF5FD",
+            backgroundColor:"white",
             padding:"50px",
             borderRadius:"10px",
             display: "flex",
             flexDirection:"column",
             alignItems:"center",
+            backgroundImage:"",
+            backgroundColor:"",
 
             }}>
 
@@ -90,6 +94,7 @@ function Login() {
                 onChange={(e) => setSenha(e.target.value)}
                 
                 />
+            
                 <FormControlLabel
                     control={ <Checkbox value={lembrar} 
                     name="lemrar" onChange={(e) => setLembrar(!lembrar)}/>}
@@ -113,10 +118,12 @@ function Login() {
                     </Grid>
 
                 </Grid>
+            
             </Box>
         </Box>
     </Container>
   )
 }
+
 
 export default Login;
