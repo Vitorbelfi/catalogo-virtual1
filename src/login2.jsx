@@ -101,19 +101,18 @@ export default function SignInSide() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                backgroundColor="#FFC600"
               >
                 Entrar
               </Button>
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
-                  Esqueceu sua senha?
+                  <a style={{ color: "black", textDecoration: "none", }}>Esqueceu sua senha?</a>
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Começe seu cadastro"}
-                  </Link>
+                <a style={{ color: "black", textDecoration: "none", }} href="http://localhost:3000/cadastro">Começe seu cadastro</a>
                 </Grid>
               </Grid>
               <Copyright sx={{ mt: 5 }} />

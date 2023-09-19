@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 
-function EditaFilme() {
+function EditaProduto() {
 
     const{id} = useParams();
 
@@ -84,14 +84,14 @@ function EditaFilme() {
     <Container component="section" maxWidth="xs">
         <Box sx={{
             mt:10,
-            backgroundColor:"#CAF5FD",
+            backgroundColor:"",
             padding:"50px",
             borderRadius:"10px",
             display: "flex",
             flexDirection:"column",
             alignItems:"center",
          }}>
-            <h1>Edite seu Filme</h1>
+            <h1>Edite seu Produto</h1>
             {erro && (<Alert severity="warning" sx={{mt:2, mb:2}}>Desculpe tente novamente</Alert>)}
             {editar && (<Alert severity="success" sx={{mt:2, mb:2}}>Filme editado com sucesso</Alert>)}
 
@@ -165,4 +165,4 @@ function EditaFilme() {
   )
 }
 
-export default EditaFilme;
+export default EditaProduto;

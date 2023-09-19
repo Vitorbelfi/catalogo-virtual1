@@ -2,12 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from "./App";
 import Login from './login';
-import Filmes from './filmes';
+import Produtos from './produtos';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Cadastro from './Cadastro'
-import EditaFilme from './components/EditaFilme';
-import Login2 from './login2'
+import EditaProduto from './components/EditaProduto';
+import Login2 from './login2';
+
+
 
 
 
@@ -15,7 +17,7 @@ const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#e2e210',
+      main: '#FFC600',
     },
     secondary: {
       main: '#000000',
@@ -47,17 +49,18 @@ const router = createBrowserRouter([
     element:<Cadastro/>
   },
   {
-    path: "/filmes",
-    element:<Filmes/>
+    path: "/produtos",
+    element:<Produtos/>
   },
   {
     path: "/edicao/:id",
-    element: <EditaFilme/>
+    element: <EditaProduto/>
   },
   {
     path: "/login2",
     element: <Login2/>
-  }
+  },
+
 
 ]);
 

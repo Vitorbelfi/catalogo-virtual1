@@ -49,6 +49,9 @@ function Cadastrar(evento){
     
 
   return (
+
+        
+
     <Container component="section" maxWidth="xs">
         <Box sx={{
 
@@ -67,7 +70,7 @@ function Cadastrar(evento){
 
             <Typography component ="h1" variant ='h5'>Cadastro Produto</Typography>
 
-            {erro && (<Alert severity='warning'>Filme ja cadastrado , tente novamente please!</Alert>)}
+            {erro && (<Alert severity='warning'>Produto ja cadastrado , tente novamente please!</Alert>)}
             {cadastro && (<Alert severity='success'>Obrigado por cadastrar seu produto!</Alert>)}
             
             <Box component="form" onSubmit={Cadastrar}> 

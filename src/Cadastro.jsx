@@ -135,7 +135,7 @@ function Cadastro() {
                     Suporte
                   </Grid>
                   <Grid item>
-                    Login
+                    <a style={{ color: "black", textDecoration: "none", }} href="http://localhost:3000/Login2">Login</a>
                   </Grid>
                 </Grid>
 
