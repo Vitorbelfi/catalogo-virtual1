@@ -5,9 +5,7 @@ import { useParams } from 'react-router-dom';
 
 
 function EditaProduto() {
-
     const{id} = useParams();
-
     console.log(id);
 
     const [titulo, setTitulo ] = useState("");
@@ -18,16 +16,16 @@ function EditaProduto() {
     const [imagem, setImagem] = useState("");
     const [ editar, setEditar] = useState(false);
     const [ erro, setErro] = useState(false);
-    const [ cadastro, setCadastro] = useState(false);
+    
 
    
     useEffect (() => {
-        fetch(process.env.REACT_APP_BACKEND + "filmes/" + id ,{
+        const usuario = localStorage.getItem("usuario")
+        fetch(process.env.REACT_APP_BACKEND + "produtos/" + usuario + "/" + id ,{
             method: "GET",
             headers: {
                 'Content-Type': 'application/json'
             },
-           
             })
             .then((resposta)=>resposta.json())
             .then((json)=>{
@@ -48,7 +46,7 @@ function EditaProduto() {
 
     function Editar(evento){
         evento.preventDefault();
-        fetch(process.env.REACT_APP_BACKEND + "users",{
+        fetch(process.env.REACT_APP_BACKEND + "produtos",{
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
@@ -60,13 +58,14 @@ function EditaProduto() {
                     ano:ano,
                     duracao:duracao,
                     categoria:categoria,
-                    imagem:imagem
+                    imagem:imagem,
+                    usuario: localStorage.getItem("usuario")
                 }
             )
         })
         .then((resposta)=>resposta.json())
             .then((json)=>{
-                if(!json._id){
+                if(json.titulo){
                    setEditar(true);
                    setErro(false);
                 } else{
@@ -76,8 +75,6 @@ function EditaProduto() {
 
             })
             .catch((erro)=>{setErro(true)})
-  
-
     }
 
   return (

@@ -17,7 +17,7 @@ function Filme(props) {
 
             <CardContent>
                 <Typography variant="h5" component="div">
-                    {props.descricao}
+                    {props.titulo}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                     {props.descricao}

@@ -1,15 +1,16 @@
 import { Box, Container,  TextField, Typography,  Button, Alert } from '@mui/material';
 import React from 'react'
 import {useState, useEffect} from 'react';
+import { Navigate } from 'react-router-dom';
 
 
 
-function Filmes() {
-    const [nome, setNome ] = useState("");
+function Produtos() {
+    const [titulo, setTitulo ] = useState("");
     const [descricao, setDescricao ] = useState("");
-    const [durabilidade, setDurabilidade ] = useState("");
-    const [tamanho, setTamanho ] = useState("");
-    const [cor, setCor] = useState("");
+    const [ano, setAno ] = useState("");
+    const [duracao, setDuracao ] = useState("");
+    const [categoria, setCategoria] = useState("");
     const [imagem, setImagem] = useState("");
     const [ cadastro, setCadastro] = useState(false);
     const [ erro, setErro] = useState(false);
@@ -17,19 +18,21 @@ function Filmes() {
 function Cadastrar(evento){
     
     evento.preventDefault();
-    fetch(process.env.REACT_APP_BACKEND + "filmes",{
+    fetch(process.env.REACT_APP_BACKEND + "produtos",{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(
                 {
-                    nome:nome,
+                    titulo:titulo,
                     descricao: descricao,
-                    durabilidade:durabilidade,
-                    tamanho:tamanho,
-                    cor:cor,
-                    imagem:imagem
+                    ano:ano,
+                    duracao:duracao,
+                    categoria:categoria,
+                    imagem:imagem,
+                    usuario: localStorage.getItem( "usuario" )
+                    
                 }
                 )
             })
@@ -46,10 +49,21 @@ function Cadastrar(evento){
             })
             .catch((erro)=>{setErro(true)})
       }
+
+      useEffect(() => {
+
+        setTitulo("");
+        setDescricao("");
+        setAno("");
+        setDuracao("");
+        setCategoria("");
+        setImagem("");
+        setCadastro(false);
+      }, [cadastro]);
     
 
   return (
-
+   
         
 
     <Container component="section" maxWidth="xs">
@@ -62,6 +76,7 @@ function Cadastrar(evento){
         display: "flex",
         flexDirection:"column",
         alignItems:"center",
+        
 
 
         }}>
@@ -80,7 +95,7 @@ function Cadastrar(evento){
                     type="text"  
                     fullWidth 
                     margin="normal"
-                    onChange={(e) => setNome(e.target.value)}
+                    onChange={(e) => setTitulo(e.target.value)}
                 />
                 <TextField
                   label = "descrição" 
@@ -96,7 +111,7 @@ function Cadastrar(evento){
                   type="text"  
                   fullWidth 
                   margin="normal"
-                  onChange={(e) => setDurabilidade(e.target.value)}
+                  onChange={(e) => setDuracao(e.target.value)}
                 />
                 <TextField
                   label = "tamanho" 
@@ -104,7 +119,7 @@ function Cadastrar(evento){
                   type="text"  
                   fullWidth 
                   margin="normal"
-                  onChange={(e) => setTamanho(e.target.value)}
+                  onChange={(e) => setCategoria(e.target.value)}
                 />
                 <TextField
                   label = "cor " 
@@ -112,7 +127,7 @@ function Cadastrar(evento){
                   type="text"  
                   fullWidth 
                   margin="normal"
-                  onChange={(e) => setCor(e.target.value)}
+                  onChange={(e) => setAno(e.target.value)}
                 />
                 <TextField
                   label = "url da imagem" 
@@ -137,4 +152,4 @@ function Cadastrar(evento){
   )
 }
 
-export default Filmes
+export default Produtos;

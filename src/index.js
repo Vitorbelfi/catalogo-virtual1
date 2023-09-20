@@ -2,12 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from "./App";
 import Login from './login';
-import Produtos from './produtos';
+import Produtos from './components/Produto';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Cadastro from './Cadastro'
 import EditaProduto from './components/EditaProduto';
-import Login2 from './login2';
 
 
 
@@ -55,11 +54,7 @@ const router = createBrowserRouter([
   {
     path: "/edicao/:id",
     element: <EditaProduto/>
-  },
-  {
-    path: "/login2",
-    element: <Login2/>
-  },
+  }
 
 
 ]);
